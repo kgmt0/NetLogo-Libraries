@@ -10,7 +10,16 @@ class ParseCheck extends AnyFunSuite {
   test("Main `libraries.conf` file parses without errors.") {
     val librariesConf = ConfigFactory.parseFile(new File("libraries.conf"))
 
-    val names = librariesConf.getConfigList("extensions").asScala.map( (c) => c.getString("name") )
-    names.foreach(println(_))
+    val extensionNames = librariesConf.getConfigList("extensions").asScala.map( (c) => c.getString("name") )
+    println("Extensions")
+    println("==========")
+    extensionNames.foreach(println(_))
+    println()
+
+    val packageNames = librariesConf.getConfigList("packages").asScala.map( (c) => c.getString("name") )
+    println("Packages")
+    println("=========")
+    packageNames.foreach(println(_))
+    println()
   }
 }
